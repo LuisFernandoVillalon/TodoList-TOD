@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/afd324b477.js" crossorigin="anonymous"></script>
+    <title>Todo List</title>
+</head>
+<body>
+    <header>Weekly Planner</header>
+
+    <div class="body-container">
+        <div class="menu-container">
+            <div class="home-container">
+                <h2 class="menu-title">Home</h2>
+                <ul class="menu-list">
+                    <li data-name id="allTasks" class="menulist-item"><i class="fa-solid fa-list-check"></i> All Tasks</li>
+                    <li data-name id="today" class="menulist-item"><i class="fa-solid fa-calendar-day"></i> Today</li>
+                    <li data-name id="week" class="menulist-item"><i class="fa-solid fa-calendar-week"></i> Week</li>
+                    <li data-name id="important" class="menulist-item"><i class="fa-solid fa-star"></i> Important</li>
+                </ul>
+            </div>
+            <div class="projects-container">
+                <h2 class="menu-title">Projects</h2>
+                <div class="project-list"></div>
+                <div id="add-project" class="menu-list menulist-item"><i class="fa-regular fa-calendar-plus"></i> Add Project</div>
+                    <form  class="prjForm hide" id="projectForm" name="projectTitle" >
+                        <div style="font-size:1.25rem;">Add new project</div>
+                        <input style="height:2rem;font-size:1rem;" type="text" id="projectName" placeholder="Enter project name" autocomplete="off" required/>
+                        <div style="display:flex;gap:2.5rem;">
+                            <input type="submit" class="Btn submitBtn"/>
+                            <button type="button" class="Btn closeBtn">Close</button>
+                        </div>
+                    </form>
+                
+            </div>
+        </div>
+        <div class="content-container">
+            <div id="panelTitle" class="panelTitle">Welcome</div>
+            <div class="task-list"></div>
+            <form  class="taskForm hide" id="projectTaskForm" name="taskForm" >
+                <div>Add new task</div>
+                
+                    <label class="label-container" for="title">Title:
+                    <input class="border-flare" style="height:1.5rem;font-size:1rem;" type="text" name="title" id="taskTitle" placeholder="What to do?" required/>
+                    </label>
+                    <label class="label-container" for="details"><span style="display:flex;">Details <span style="font-size:75%;align-self:end;">(optional)</span>:</span>
+                        <textarea class="border-flare" name="details" id="details" rows="3" cols="26" placeholder="eg: I'm just gonna procrastinate, aren't I?"></textarea>
+                    </label>
+                    <label class="label-container" for="date">Date:
+                        <input class="border-flare" name="date" id="date" type="date" required/>
+                    </label>
+                    <label class="label-container" for="time">time:
+                        <input class="border-flare" name="time" id="time" type="time" required/>
+                    </label>
+                    <div style="display:flex;gap:2.5rem;">
+                        <input type="submit" class="Btn submitTaskBtn"/>
+                        <button type="button" class="Btn closeTaskBtn">Close</button>
+                    </div>
+                
+            </form>
+            <div style="display:flex;justify-content:center;"><div id="task-btn" class="task-btn"></div></div>
+        </div>
+        
+    </div>
+    <script defer src="main.js"></script>
+</body>
+</html>

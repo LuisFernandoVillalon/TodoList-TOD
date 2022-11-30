@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Cinzel', serif;
+    --blue: #14213D;
+    --black: #000000;
+    --yellow: #FCA311;
+    --platinum: #E5E5E5;
+    --white: #FFFFFF;
+}
+body {
+    background-color: var(--white);
+    height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.25rem;
+    color: var(--blue);
+    font-weight: bold;
+    border-bottom: 0.25rem solid var(--black);
+    margin-bottom: 10px;
+}
+.body-container {
+    display: grid;
+    grid-template-columns: 0.25fr 1fr;
+}
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    grid-column: 1 / 2;
+}
+.menu-title {
+    border-bottom: 0.25rem solid var(--yellow);
+    color: var(--black);
+    padding-bottom: 10px;
+}
+.menu-list {
+    list-style: none;
+    padding: 0px 15px 15px 5px;
+    margin-left: 5px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--blue);
+}
+.menulist-item {
+    display: flex;
+    gap: 1rem;
+    padding: 10px;
+}
+.menulist-item:hover {
+    background-color: #14213d5f;
+    border-radius: 5px;
+    border-left: 0.25rem solid var(--blue);
+    cursor: pointer;
+    color: var(--white);
+}
+.content-container {
+    grid-column: 2 / 4;
+    padding: 15px;
+}
+
+.prjForm, .taskForm {
+    display: none;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0.25rem inset var(--yellow);
+    background-color: var(--blue) ;
+    text-align: center;
+}
+.taskForm > div, .prjForm > div {
+    color: var(--white);
+    font-size: 1.25rem;
+    padding: 10px;
+    font-weight: 600;
+}
+.Btn {
+    border-color: var(--yellow);
+    align-self: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--blue);
+    border-radius: 5px;
+    padding: 10px;
+}
+.Btn:hover {
+    cursor: pointer;
+    border-color: var(--blue);
+    color: var(--blue);
+    background-color: var(--yellow);
+    border-radius: 5px;
+}
+.hide {
+    display: none;
+}
+.show {
+    display: flex;
+}
+.panelTitle {
+    background-color: var(--blue);
+    padding: 20px;
+    font-size:2.3rem;
+    color: var(--white);
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.todoList {
+    display: flex;
+    flex-direction: column;
+}
+.project-list, .task-list {
+    display: flex;
+    flex-direction: column;
+}
+.prjTitle {
+    font-size: 1rem;
+    padding: 5px;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+}
+.taskTitle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    padding: 5px;
+    font-weight: bold;
+    border: 5px solid var(--yellow);
+    border-radius: 15px;
+    margin: 5px 0px 0px 5px;
+}
+.taskTitle:hover {
+    border: 5px solid var(--white);
+    background-color: var(--platinum);
+    color: var(--black);
+    border-radius: 15px;
+}
+.doneTask {
+    background-color: var(--blue);
+    color: var(--white);
+}
+.doneTask:hover {
+    border: 5px solid var(--white);
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 15px;
+}
+.notDoneTask {
+    background-color: var(--white);
+    color: var(--black);
+}
+.prjContainer:hover {
+    background-color: #14213d5f;
+    border-radius: 5px;
+    border-left: 0.25rem solid var(--blue);
+    cursor: pointer;
+    color: var(--white);
+}
+.selectedPrj {
+    background-color: #14213d5f;
+    border-radius: 5px;
+    border-left: 0.25rem solid var(--yellow);
+    cursor: pointer;
+    color: var(--white);
+}
+.task-btn {
+    display: flex;
+    justify-content: center;
+    color: var(--blue);
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
+.task-btn:hover {
+    background-color: #14213d5f;
+    border-radius: 5px;
+    border-left: 0.25rem solid var(--yellow);
+    cursor: pointer;
+    color: var(--white);
+    padding: 5px;
+}
+.label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--yellow);
+}
+.border-flare {
+    border: 2.5px solid var(--white);
+}
+.frontTaskContainer {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+}
+.indvTaskTitle {
+    display: flex;
+}
+.check-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    border-color: var(--yellow);
+    border-radius: 5px;
+}
+.check-btn:hover {
+    cursor: pointer;
+}
+.date, .time {
+    border: 5px;
+    border-style: outset;
+    padding: 3px;
+}
+.dataContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    justify-content: flex-end;
+}
+.containerDescription {
+    display: flex;
+    flex-direction: column;
+}
+.taskDetails {
+    font-size: 0.75rem;
+    font-weight: normal;
+}
+.fa-star {
+    color: var(--yellow);
+}
+.fa-star:hover, .fa-trash:hover {
+    cursor: pointer;
+}
+.importantBtn, .trashTaskBtn {
+    font-size: 1.5rem;
+    display: flex;
+    padding: 5px;
+}
+.trashBtn {
+    font-size: 1rem;
+    display: flex;
+    padding-right: 5px;
+    z-index: 2;
+}
+.trashBtn:hover, .trashTaskBtn:hover {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+.prjContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.optionsContainer {
+    position: absolute;
+    background-color: rgba(20,33,61, .4);
+    display: flex;
+    flex-direction: column;
+    left:13rem;
+    top: 25.5rem;
+    padding: 8px;
+    border: 3px solid var(--blue);
+    border-radius: 20px;
+}
