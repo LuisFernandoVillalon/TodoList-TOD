@@ -1,6 +1,8 @@
 import { displayImportantTasks, displayAllTasks, displayTodayTasksList, displayWeekTasksList } from "./homeFunctions";
 import {Project, myList} from "./project";
-import { displayTaskList } from "./task";
+import { displayTaskList, saveListwithTask } from "./task";
+
+//populate individual tasks with eventlisteners and appropriate date to display
 
 export function displayEndofTask(date, time, id, importance) {
     const dataContainer = document.createElement("div");
@@ -49,7 +51,14 @@ export function displayFrontofTask(title, description, id,  prjLocation, status)
             checkBtn.innerHTML= '<i class="fa-solid fa-check"></i>';
             status = true;
             myList[prjLocation].task[id].status = true;
-            const prjTitle = document.getElementById("panelTitle");
+            saveListwithTask( myList);
+        } else {
+            checkBtn.innerHTML= '<i class="fa-solid fa-rotate"></i>';
+            status = false;
+            myList[prjLocation].task[id].status = false;
+            saveListwithTask( myList);
+        }
+        const prjTitle = document.getElementById("panelTitle");
             if (prjTitle.innerHTML == '<i class="fa-solid fa-list-check"></i>'+" All Tasks") {
                 displayAllTasks();
                 allTasksImportance();
@@ -66,28 +75,6 @@ export function displayFrontofTask(title, description, id,  prjLocation, status)
                 displayTaskList(prjLocation);
                 taskImportance();
             }
-        } else {
-            checkBtn.innerHTML= '<i class="fa-solid fa-rotate"></i>';
-            status = false;
-            myList[prjLocation].task[id].status = false;
-            const prjTitle = document.getElementById("panelTitle");
-            if (prjTitle.innerHTML == '<i class="fa-solid fa-list-check"></i>'+" All Tasks") {
-                displayAllTasks();
-                allTasksImportance();
-            } else if (prjTitle.innerHTML == '<i class="fa-solid fa-star"></i>'+" Important Tasks") {
-                displayImportantTasks();
-                allTasksImportance();
-            } else if (prjTitle.innerHTML == '<i class="fa-solid fa-calendar-day"></i>'+" Today's Tasks") {
-                displayTodayTasksList();
-                todayTasksListImportanceBtn();
-            } else if (prjTitle.innerHTML == '<i class="fa-solid fa-calendar-week"></i>'+" This week's tasks") {
-                displayWeekTasksList();
-                weekTasksListImportanceBtn();
-            } else {
-                displayTaskList(prjLocation);
-                taskImportance();
-            }
-        }
     });
     frontTaskContainer.appendChild(checkBtn);
 
@@ -105,6 +92,11 @@ export function displayFrontofTask(title, description, id,  prjLocation, status)
     
     return containerDescription;
 }
+
+//eventlistener, for task importance. A new function had be made for every different list
+//presented. I think I could of used a protorype, to avoid creating a specific function
+//for each instance.
+
 export const taskImportance = () => {
     let prjLocation = 0;
     const prjTitle = document.getElementById("panelTitle");
@@ -116,19 +108,19 @@ export const taskImportance = () => {
     for (let i = 0; i < myList[prjLocation].task.length; ++i) {
         const importanceBtn = document.getElementById("taskImportance-"+i);
         importanceBtn.addEventListener("click", () => {
-            // let taskImportance = myList[prjLocation].task[i].importance;
-            const {importance: taskImportance} = myList[prjLocation].task[i];
+            let taskImportance = myList[prjLocation].task[i].importance;;
             if (!(taskImportance)) {
                 importanceBtn.innerHTML = '<i class="fa-solid fa-star"></i>';
                 myList[prjLocation].task[i].importance = true;
+                saveListwithTask( myList);
             } else if(taskImportance) {
                 importanceBtn.innerHTML = '<i class="fa-regular fa-star"></i>';
                 myList[prjLocation].task[i].importance = false;
+                saveListwithTask( myList);
             } 
         });
     }
 }
-
 export const allTasksImportance = () => {
     let tempAllTasks = [];
     let counter = 0;
@@ -147,14 +139,15 @@ export const allTasksImportance = () => {
                 if (!(taskImportance)) {
                     importanceBtn.innerHTML = '<i class="fa-solid fa-star"></i>';
                     tempAllTasks[i].importance = true;
+                    saveListwithTask( myList);
                 } else if(taskImportance) {
                     importanceBtn.innerHTML = '<i class="fa-regular fa-star"></i>';
                     tempAllTasks[i].importance = false;
+                    saveListwithTask( myList);
                 } 
             });
         }
-    }
-
+}
 export const importantTasksListBtn = () => {
     let tempImportantTasks = [];
     let counter = 0;
@@ -177,16 +170,17 @@ export const importantTasksListBtn = () => {
                 tempImportantTasks[i].importance = true;
                 displayImportantTasks();
                 importantTasksListBtn();
+                saveListwithTask( myList);
             } else if(taskImportance) {
                 importanceBtn.innerHTML = '<i class="fa-regular fa-star"></i>';
                 tempImportantTasks[i].importance = false;
                 displayImportantTasks();
                 importantTasksListBtn();
+                saveListwithTask( myList);
             } 
         });
     }
 }
-
 export const todayTasksListImportanceBtn = () => {
     let tempTodayTasks = [];
     let counter = 0;
@@ -214,16 +208,17 @@ export const todayTasksListImportanceBtn = () => {
                 tempTodayTasks[i].importance = true;
                 displayTodayTasksList();
                 todayTasksListImportanceBtn();
+                saveListwithTask( myList);
             } else if(taskImportance) {
                 importanceBtn.innerHTML = '<i class="fa-regular fa-star"></i>';
                 tempTodayTasks[i].importance = false;
                 displayTodayTasksList();
                 todayTasksListImportanceBtn();
+                saveListwithTask( myList);
             } 
         });
     }
 }
-
 export const weekTasksListImportanceBtn = () => {
     let tempWeekTasks = [];
     let counter = 0;
@@ -266,11 +261,13 @@ export const weekTasksListImportanceBtn = () => {
                 tempWeekTasks[i].importance = true;
                 displayWeekTasksList();
                 weekTasksListImportanceBtn();
+                saveListwithTask( myList);
             } else if(taskImportance) {
                 importanceBtn.innerHTML = '<i class="fa-regular fa-star"></i>';
                 tempWeekTasks[i].importance = false;
                 displayWeekTasksList();
                 weekTasksListImportanceBtn();
+                saveListwithTask( myList);
             } 
         });
     }

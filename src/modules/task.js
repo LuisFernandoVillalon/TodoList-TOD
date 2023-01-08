@@ -1,5 +1,12 @@
 import {Project, myList} from "./project";
-import {displayFrontofTask, displayEndofTask, taskImportance} from "./individualTask"
+import {displayFrontofTask, displayEndofTask, taskImportance} from "./individualTask";
+
+export function saveListwithTask(list) {
+    localStorage.setItem('storedListwithTask', JSON.stringify(list));
+}
+export function saveTaskStat(taskStat) {
+    localStorage.setItem('taskStat', JSON.stringify(taskStat));
+}
 
 export function taskConstructor (taskTitle, details, date, time) {
     this.taskTitle = taskTitle;
@@ -11,42 +18,44 @@ export function taskConstructor (taskTitle, details, date, time) {
 }
 taskConstructor.prototype.deleteTask = function(index, taskList) {
     taskList.splice(index,1);
+    saveListwithTask(myList);
 }
 function addTasktoProject(taskTitle, details, date, time, prjLocation) {
     let newTask = new taskConstructor(taskTitle, details, date, time);
     myList[prjLocation].task.push(newTask);
+    saveListwithTask(myList);
 }
-export function updateTaskList() {
+export function updateTaskList(storedList) {
     const prjTitle = document.getElementById("panelTitle");
     let prjLocation = 0;
-    for (let i = 0; i < myList.length; ++i) {
-        if (myList[i].title == prjTitle.textContent) {
+    for (let i = 0; i < storedList.length; ++i) {
+        if (storedList[i].title == prjTitle.textContent) {
             prjLocation = i;
         }
     }
     const taskList = document.querySelector(".task-list");
     taskList.innerHTML = "";
     taskList.id = prjLocation;
-     for (let i = 0; i < myList[prjLocation].task.length; ++i) {
-        let temp = myList[prjLocation].task[i];
+     for (let i = 0; i < storedList[prjLocation].task.length; ++i) {
+        let temp = storedList[prjLocation].task[i];
         let currentTask = new taskConstructor(temp.taskTitle, temp.details, temp.date, temp.time);
          let task = document.createElement('div');
          task.id = "whole-taskStatus-" + i;
-         if (myList[prjLocation].task[i].status == false) {
+         if (storedList[prjLocation].task[i].status == false) {
             task.classList.add('taskTitle');
          } else {
             task.classList.add('taskTitle','doneTask');
          }
-         task.appendChild(displayFrontofTask(myList[prjLocation].task[i].taskTitle, myList[prjLocation].task[i].details, i, prjLocation, myList[prjLocation].task[i].status));
-         task.appendChild(displayEndofTask(myList[prjLocation].task[i].date, myList[prjLocation].task[i].time, i, myList[prjLocation].task[i].importance));
+         task.appendChild(displayFrontofTask(storedList[prjLocation].task[i].taskTitle, storedList[prjLocation].task[i].details, i, prjLocation, storedList[prjLocation].task[i].status));
+         task.appendChild(displayEndofTask(storedList[prjLocation].task[i].date, storedList[prjLocation].task[i].time, i, storedList[prjLocation].task[i].importance));
          const trashElement = document.createElement("div");
             trashElement.classList.add("trashTaskBtn");
             trashElement.id = "trashTask-" + i;
             trashElement.innerHTML = '<i class="fa-solid fa-trash"></i>';
             trashElement.addEventListener("click", () => {
-                 currentTask.deleteTask(i, myList[prjLocation].task);
+                 currentTask.deleteTask(i, storedList[prjLocation].task);
                   taskList.innerHTML = "";
-                  updateTaskList();
+                  updateTaskList(storedList);
                   taskImportance();
             });
             task.appendChild(trashElement);
@@ -127,7 +136,7 @@ export function displayTaskList(prjLocation) {
             trashElement.id = "trashTask-" + i;
             trashElement.innerHTML = '<i class="fa-solid fa-trash"></i>';
             trashElement.addEventListener("click", () => {
-                 currentTask.deleteTask(i, myList[prjLocation].task);
+                  currentTask.deleteTask(i, myList[prjLocation].task);
                   taskList.innerHTML = "";
                   displayTaskList(prjLocation);
                   taskImportance();

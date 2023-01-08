@@ -1,6 +1,6 @@
 
 import { taskImportance } from "./individualTask";
-import {closeTaskForm, displayTaskBtn, displayTaskForm, submitTaskForm, updateTaskList} from "./task";
+import {saveListwithTask, closeTaskForm, displayTaskBtn, displayTaskForm, submitTaskForm, updateTaskList} from "./task";
 
 export const Project = {
     title: "",
@@ -11,13 +11,26 @@ function projectConstructor (title) {
     this.task = [];
 }
 projectConstructor.prototype.deletePrj = function(index) {
+    let storedList = JSON.parse(localStorage.getItem("storedListwithTask"));
+    storedList.splice(index, 1);
+    localStorage.setItem('storedListwithTask', JSON.stringify(storedList));
     myList.splice(index,1);
 }
-
 export let myList = [];
- 
+window.onload = () => {
+    if (localStorage.getItem("storedListwithTask") === null) {
+        myList= [];
+    } else  {
+        let storedList = JSON.parse(localStorage.getItem("storedListwithTask"));
+        storedList.forEach((key) => {
+          myList.push(key);
+        });
+        displayProjectList(myList);
+    }
+}
 function addProjecttoList (newProject) {
     myList.push(newProject);
+    saveListwithTask(myList);
 }
 function createProject(title) {
     return new projectConstructor(title);
@@ -46,7 +59,7 @@ export const submitProjectForm = () => {
                         } 
                     }   
                         addProjecttoList(newPrj);
-                        displayProjectList();
+                        displayProjectList(myList);
                         closeForm();
                     
                 } 
@@ -66,11 +79,11 @@ function closeForm() {
 function clearForm() {
     document.forms["formInfo"].reset();
 }
-function displayProjectList() {
+export function displayProjectList(storedList) {
      let list = document.querySelector(".project-list");
      list.innerHTML = "";
-     for (let i = 0; i < myList.length; i++) {
-        let temp = myList[i];
+     for (let i = 0; i < storedList.length; i++) {
+        let temp = storedList[i];
         let currentPrj = new projectConstructor(temp.title);
 
         const prjContainer = document.createElement('div');
@@ -93,7 +106,7 @@ function displayProjectList() {
                 addTaskBtn.style.display = "none";
                 const pnlTitle = document.getElementById("panelTitle");
                 pnlTitle.innerHTML = "Project \"" + currentPrj.title + "\" has been deleted.";
-                displayProjectList();
+                displayProjectList(storedList);
                 taskImportance();
         });
         prjContainer.appendChild(prjTrashBtn);
@@ -102,7 +115,7 @@ function displayProjectList() {
             const pnlTitle = document.getElementById("panelTitle");
             pnlTitle.textContent = currentPrj.title;
             displayTaskBtn();
-            updateTaskList();
+            updateTaskList(storedList);
             taskImportance();
         });
         list.appendChild(prjContainer);

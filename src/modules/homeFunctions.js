@@ -2,6 +2,9 @@ import {Project, myList} from "./project";
 import { taskConstructor } from "./task";
 import { todayTasksListImportanceBtn, allTasksImportance, displayEndofTask, displayFrontofTask, importantTasksListBtn, weekTasksListImportanceBtn} from "./individualTask";
 
+//eventlisteners that activate a function to display the according list depending on 
+//the selection made
+
 const displayAllTasksBtn = document.getElementById("allTasks");
 export const displayAllTaskList = () => {
      displayAllTasksBtn.addEventListener('click', () => {
@@ -47,7 +50,6 @@ export function displayAllTasks()  {
              }
          }
 }
-
 const displayImportantTasksBtn = document.getElementById("important");
 export const displayImportantList = () => {
     displayImportantTasksBtn.addEventListener('click', () => {
@@ -93,8 +95,7 @@ export function displayImportantTasks() {
                         }
              }
          }
- }
-
+}
 const displayTodayTasksBtn = document.getElementById("today");
 export const displayTodayTasks = () => {
     displayTodayTasksBtn.addEventListener('click', () => {
@@ -112,8 +113,8 @@ export const displayTodayTasks = () => {
               for (let i = 0; i < myList.length; i++) {
                  for (let j = 0; j < myList[i].task.length; ++j) {
                     const date = new Date();
-                    let day = date.getDate();
-                    let month = date.getMonth() + 1;
+                    let day = ("0" + date.getDate()).slice(-2);
+                    let month = ("0" + date.getMonth() + 1).slice(-2);
                     let year = date.getFullYear();
                     let currentDate = `${year}-${month}-${day}`;
                     if (myList[i].task[j].date == currentDate) {
@@ -145,8 +146,7 @@ export const displayTodayTasks = () => {
                         }
              }
          }
- }
-
+}
 const displayWeekTasksBtn = document.getElementById("week");
 export const displayWeekTasks = () => {
     displayWeekTasksBtn.addEventListener('click', () => {
@@ -183,7 +183,6 @@ export const displayWeekTasks = () => {
                        return dateArray;
                  }
                 var dateArray = getDates(date, (date).addDays(7));
-                console.log(dateArray);
                 if (dateArray.includes(myList[i].task[j].date)) {
                     let temp = myList[i].task[j];
                     let currentTask = new taskConstructor(temp.taskTitle, temp.details, temp.date, temp.time);
