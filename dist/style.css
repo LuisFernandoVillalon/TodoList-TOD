@@ -63,6 +63,33 @@ header {
     padding: 15px;
 }
 
+.last-flex {
+    background-color: var(--blue); 
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 0 50px var(--black);
+    position: fixed;
+    bottom: 0px; 
+    font-size: 20px;
+    padding-top: 5px;
+}
+.icon-container {
+    display: flex;
+    color: var(--white);
+    padding-left: 24px; 
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    gap: 20px;
+}
+a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
 .prjForm, .taskForm {
     display: none;
     position: relative;
@@ -288,3 +315,36 @@ header {
     border: 3px solid var(--blue);
     border-radius: 20px;
 }
+
+.fa-linkedin:hover, .fa-r:hover {
+    text-shadow: none; 
+    cursor: pointer;
+    animation-name: counterspin;
+    animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.fa-github:hover, .fa-instagram:hover {
+    text-shadow: none; 
+    cursor: pointer;
+    animation-name: spin;
+    animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+ }
+ @keyframes counterspin {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+ }
