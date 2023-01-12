@@ -359,3 +359,7 @@ a, a:visited, a:hover, a:active {
       transform: rotate(0deg);
     }
  }
+
+input {
+    font-weight: bold;
+}
