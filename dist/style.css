@@ -165,6 +165,9 @@ a, a:visited, a:hover, a:active {
     display: flex;
     width: 100%;
 }
+.projects-container {
+    max-height: 325px;
+}
 .taskTitle {
     display: flex;
     justify-content: space-around;
