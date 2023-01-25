@@ -12,3 +12,7 @@ project can be assigned individual tasks. Each task has acheck-mark button, titl
 HTML, CSS, JavaScript, npm, Webpack, ES6 Modules, Object Oriented Principles
 
 
+# Video Recording
+
+
+[screen-capture.webm](https://user-images.githubusercontent.com/104875261/214674445-6e13fa85-7068-4e92-ab64-b7bec22ebf78.webm)
