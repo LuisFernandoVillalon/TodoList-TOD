@@ -105,14 +105,15 @@ a, a:visited, a:hover, a:active {
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    border: 0.25rem inset var(--yellow);
-    background-color: rgba(20, 33, 61, 0.6) ;
+    border: 0.25rem inset var(--blue);
+    background-color: var(--yellow) ;
     text-align: center;
     top: 35%;
     left: 50%;
+    font-family: 'Merriweather', serif;
 }
 .taskForm > div, .prjForm > div {
-    color: var(--black);
+    color: var(--white);
     font-size: 1.25rem;
     padding: 10px;
     font-weight: 600;
@@ -239,6 +240,7 @@ a, a:visited, a:hover, a:active {
     flex-direction: column;
     align-items: flex-start;
     color: var(--white);
+    font-weight: bold;
 }
 .border-flare {
     border: 2.5px solid var(--white);
