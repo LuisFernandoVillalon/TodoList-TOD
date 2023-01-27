@@ -25,7 +25,7 @@ themeBtn.addEventListener( "click", () => {
         root.style.setProperty('--blue', '#14213D');
 
         root.style.setProperty('--white', '#FFFFFF');
-    
+        
         root.style.setProperty('--black', '#000000');
 
         root.style.setProperty('--platinum', '#E5E5E5');
