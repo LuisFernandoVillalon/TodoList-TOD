@@ -2,6 +2,8 @@
 * {
     margin: 0px;
     padding: 0px;
+}
+:root {
     font-family: 'Cinzel', serif;
     --blue: #14213D;
     --black: #000000;
@@ -9,11 +11,7 @@
     --platinum: #E5E5E5;
     --white: #FFFFFF;
 }
-/* body {
-    background-color: var(--white);
-    height: 100vh;
-} */
-header {
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,6 +29,7 @@ header {
     grid-template-rows: 0.15fr 1fr 0fr;
     background-color: var(--white);
     height: 100vh;
+    z-index: 1;
 }
 .menu-container {
     display: flex;
@@ -61,7 +60,7 @@ header {
     border-radius: 5px;
     border-left: 0.25rem solid var(--blue);
     cursor: pointer;
-    color: var(--white);
+    color: var(--yellow);
 }
 .content-container {
     grid-column: 2 / 4;
@@ -113,7 +112,7 @@ a, a:visited, a:hover, a:active {
     left: 50%;
 }
 .taskForm > div, .prjForm > div {
-    color: var(--white);
+    color: var(--black);
     font-size: 1.25rem;
     padding: 10px;
     font-weight: 600;
@@ -148,6 +147,7 @@ a, a:visited, a:hover, a:active {
     color: var(--white);
     border-radius: 3px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 .todoList {
     display: flex;
@@ -159,11 +159,13 @@ a, a:visited, a:hover, a:active {
     height: 75%;
 }
 .prjTitle {
+    font-family: 'Merriweather', serif;
     font-size: 1rem;
     padding: 5px;
     font-weight: bold;
     display: flex;
     width: 100%;
+    color: var(--black);
 }
 .projects-container {
     max-height: 325px;
@@ -178,6 +180,8 @@ a, a:visited, a:hover, a:active {
     border: 5px solid var(--yellow);
     border-radius: 15px;
     margin: 5px 0px 0px 5px;
+    
+    color: var(--black);
 }
 .taskTitle:hover {
     border: 5px solid var(--white);
@@ -228,7 +232,6 @@ a, a:visited, a:hover, a:active {
     border-radius: 5px;
     border-left: 0.25rem solid var(--yellow);
     cursor: pointer;
-    color: var(--white);
     padding: 5px;
 }
 .label-container {
@@ -247,6 +250,7 @@ a, a:visited, a:hover, a:active {
 }
 .indvTaskTitle {
     display: flex;
+    font-family: 'Merriweather', serif;
 }
 .check-btn {
     display: flex;
@@ -277,7 +281,7 @@ a, a:visited, a:hover, a:active {
 }
 .taskDetails {
     font-size: 0.75rem;
-    font-weight: normal;
+    font-family: 'Merriweather', serif;
 }
 .fa-star {
     color: var(--yellow);
@@ -285,16 +289,23 @@ a, a:visited, a:hover, a:active {
 .fa-star:hover, .fa-trash:hover {
     cursor: pointer;
 }
-.importantBtn, .trashTaskBtn {
+.importantBtn {
     font-size: 1.5rem;
     display: flex;
     padding: 5px;
+}
+.trashTaskBtn {
+    font-size: 1.5rem;
+    display: flex;
+    padding: 5px;
+    color: var(--black);
 }
 .trashBtn {
     font-size: 1rem;
     display: flex;
     padding-right: 15px;
     z-index: 2;
+    color: var(--black);
 }
 .trashBtn:hover, .trashTaskBtn:hover {
     animation: shake 0.5s;
@@ -330,7 +341,7 @@ a, a:visited, a:hover, a:active {
     border-radius: 20px;
 }
 
-.fa-linkedin:hover, .fa-r:hover {
+.fa-linkedin:hover {
     text-shadow: none; 
     cursor: pointer;
     animation-name: counterspin;
@@ -338,7 +349,7 @@ a, a:visited, a:hover, a:active {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
-.fa-github:hover, .fa-instagram:hover {
+.fa-github:hover {
     text-shadow: none; 
     cursor: pointer;
     animation-name: spin;
@@ -365,4 +376,45 @@ a, a:visited, a:hover, a:active {
 
 input {
     font-weight: bold;
+}
+textarea {
+    font-weight: bold;
+}
+.theme-btn {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.theme-btn:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .theme-btn {
+    padding: 0.25em 0.75em;
+  }
+}
+
+.theme-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.header-title {
+    display: flex;
+    justify-content: center;
+    margin-right: 5%;
 }
