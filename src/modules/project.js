@@ -1,20 +1,23 @@
 
-import { taskImportance } from "./individualTask";
-import {saveListwithTask, closeTaskForm, displayTaskBtn, displayTaskForm, submitTaskForm, updateTaskList} from "./task";
 
-export const Project = {
-    title: "",
-    task: [],
-}
+import { updateTaskList } from "./Task/taskList"
+import { displayTaskForm, closeTaskForm, submitTaskForm } from "./Forms/TaskForm"
+import { displayTaskBtn } from "./Forms/TaskForm"
+import { saveListwithTask } from "./storage/LocalStorage"
+import { showPrjEditForm } from "./Forms/PrjEditForm"
+import { prjTitle } from "./Forms/PrjEditForm"
+
 function projectConstructor (title) {
     this.title = title;
-    this.task = [];
+    this.tasks = [];
 }
 projectConstructor.prototype.deletePrj = function(index) {
+    let numIndex = index.replace("project-Title-", "");
+    numIndex = Number(numIndex);
     let storedList = JSON.parse(localStorage.getItem("storedListwithTask"));
-    storedList.splice(index, 1);
+    storedList.splice(numIndex, 1);
     localStorage.setItem('storedListwithTask', JSON.stringify(storedList));
-    myList.splice(index,1);
+    myList.splice(numIndex,1);
 }
 export let myList = [];
 window.onload = () => {
@@ -28,56 +31,12 @@ window.onload = () => {
         displayProjectList(myList);
     }
 }
-function addProjecttoList (newProject) {
+export function addProjecttoList (newProject) {
     myList.push(newProject);
     saveListwithTask(myList);
 }
-function createProject(title) {
+export function createProject(title) {
     return new projectConstructor(title);
-}
-const addProjectBtn = document.getElementById("add-project");
-export const displayProjectForm = () => {
-    addProjectBtn.addEventListener('click', () => {
-        openForm();
-    });
-}
-function openForm() {
-    let formPage = document.getElementById("projectForm");
-    formPage.classList.remove("hide");
-}
-const submitBtn = document.querySelector('.submitBtn');
-export const submitProjectForm = () => {
-    submitBtn.addEventListener('click', (event) => {
-        let newProject = document.getElementById("projectName");
-        event.preventDefault();
-                if ((newProject.value !== "")) {
-                    let newPrj = createProject(newProject.value);
-                    for (let i = 0; i < myList.length; ++i) {
-                        if (newPrj.title == myList[i].title) {
-                            window.alert("Project title cannot be repeated or be blank.")
-                            return;
-                        } 
-                    }   
-                        addProjecttoList(newPrj);
-                        displayProjectList(myList);
-                        closeForm();
-                    
-                } 
-    });
-}
-const closeBtn = document.querySelector('.closeBtn');
-export const closeProjectForm = () => {
-    closeBtn.addEventListener('click', () => {
-        closeForm();
-    });
-}
-function closeForm() {
-    let formPage = document.querySelector("form");
-    formPage.classList.add("hide");
-    clearForm();
-}
-function clearForm() {
-    document.forms["formInfo"].reset();
 }
 export function displayProjectList(storedList) {
      let list = document.querySelector(".project-list");
@@ -88,10 +47,17 @@ export function displayProjectList(storedList) {
 
         const prjContainer = document.createElement('div');
         prjContainer.classList.add("prjContainer");
-
         const prjTitle = document.createElement('div');
-        prjTitle.id = i;
-        Project.title = currentPrj.title;
+        prjTitle.id = "project-Title-"+i;
+
+        const prjEditBtn = document.createElement('div');
+        prjEditBtn.classList.add("prjEditBtn");
+        prjEditBtn.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+        prjEditBtn.addEventListener("click", (event) => {
+            showPrjEditForm(prjTitle.id, currentPrj.title);
+        });
+        prjContainer.appendChild(prjEditBtn);
+
         prjTitle.classList.add('prjTitle');
         prjTitle.innerHTML = currentPrj.title;
         prjContainer.appendChild(prjTitle);
@@ -107,16 +73,14 @@ export function displayProjectList(storedList) {
                 const pnlTitle = document.getElementById("panelTitle");
                 pnlTitle.innerHTML = "Project \"" + currentPrj.title + "\" has been deleted.";
                 displayProjectList(storedList);
-                taskImportance();
         });
         prjContainer.appendChild(prjTrashBtn);
 
         prjTitle.addEventListener("click", (event) => {
             const pnlTitle = document.getElementById("panelTitle");
-            pnlTitle.textContent = currentPrj.title;
+            pnlTitle.textContent = prjTitle.innerHTML;
             displayTaskBtn();
             updateTaskList(storedList);
-            taskImportance();
         });
         list.appendChild(prjContainer);
      }

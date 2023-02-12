@@ -11,14 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
         <title>Todo List</title>
         <link rel="icon"  type="image/x-icon" href="./images/favicon.ico"> 
+        <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 </head>
 <body>
     <div class="body-container">
         <div class="header">
-            <div class="header-title">Weekly Planner</div>
-            <div class="theme-btn-container">
+            <div class="start-menu-container">
                 <button id="themeBtn" class="theme-btn">Day</button>
             </div>
+            <div class="header-title">Weekly Planner</div>
             
         </div>
         <div class="menu-container">
@@ -47,18 +49,18 @@
             </div>
         </div>
         <div class="content-container">
-            <div id="panelTitle" class="panelTitle">Welcome</div>
+            <div id="panelTitle"class="panelTitle">Welcome</div>
             <div class="task-list"></div>
             <form  class="taskForm hide" id="projectTaskForm" name="taskForm" >
                 <div>Add new task</div>
                 
-                    <label class="label-container" for="title">Title:
+                    <label class="label-container" for="title">title:
                     <input class="border-flare" style="height:1.5rem;font-size:1rem;" type="text" name="title" id="taskTitle" placeholder="What to do?" required/>
                     </label>
-                    <label class="label-container" for="details"><span style="display:flex;">Details <span style="font-size:75%;align-self:end;">(optional)</span>:</span>
+                    <label class="label-container" for="details"><span style="display:flex;">details:</span>
                         <textarea class="border-flare" name="details" id="details" rows="3" cols="26" placeholder="eg: I'm just gonna procrastinate, aren't I?"></textarea>
                     </label>
-                    <label class="label-container" for="date">Date:
+                    <label class="label-container" for="date">date:
                         <input class="border-flare" name="date" id="date" type="date" required/>
                     </label>
                     <label class="label-container" for="time">time:

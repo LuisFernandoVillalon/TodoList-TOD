@@ -1,8 +1,5 @@
-import {closeProjectForm, displayProjectForm, submitProjectForm} from "./modules/project";
+import { closeProjectForm, displayProjectForm, submitProjectForm } from "./modules/Forms/ProjectForm";
 import { displayAllTaskList, displayImportantList, displayTodayTasks, displayWeekTasks } from "./modules/homeFunctions";
-
-
-
 
 
 const themeBtn = document.getElementById("themeBtn");
