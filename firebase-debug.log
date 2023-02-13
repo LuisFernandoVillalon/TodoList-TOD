@@ -1,0 +1,8 @@
+[debug] [2023-02-10T17:37:27.613Z] ----------------------------------------------------------------------
+[debug] [2023-02-10T17:37:27.615Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\17602\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting --interactive
+[debug] [2023-02-10T17:37:27.616Z] CLI Version:   11.22.0
+[debug] [2023-02-10T17:37:27.616Z] Platform:      win32
+[debug] [2023-02-10T17:37:27.616Z] Node Version:  v16.16.0
+[debug] [2023-02-10T17:37:27.617Z] Time:          Fri Feb 10 2023 09:37:27 GMT-0800 (Pacific Standard Time)
+[debug] [2023-02-10T17:37:27.617Z] ----------------------------------------------------------------------
+[debug] 
