@@ -491,3 +491,9 @@ textarea {
         padding: 15px;
     }
 }
+.header-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+}
