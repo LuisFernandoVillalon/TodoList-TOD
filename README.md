@@ -11,5 +11,8 @@ project can be assigned individual tasks. Each task has acheck-mark button, titl
 
 HTML, CSS, JavaScript, npm, Webpack, ES6 Modules, Object Oriented Principles
 
+# Live Preview
+
+[screen-capture (5).webm](https://user-images.githubusercontent.com/104875261/234383694-d0bbb852-42f8-458a-a070-b903aa3a961f.webm)
 
 
